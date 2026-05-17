@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impo,site</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-badge"><span class="dot"></span> USE BRAVE BROWSER FOR BETTER EXPERIENCE </div>
+    <h1>IMPO.HUB</h1>
+    <p class="tagline">This website is made by Roxan Web Dev.</p>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" placeholder="Search sites…" oninput="filterAll()">
+      <button class="search-btn">Search</button>
+    </div>
+    <div class="insta-wrap">
+      <p class="insta-label">Need help or anything? DM me 👇</p>
+      <a href="https://instagram.com/_rox.an_ronin_" target="_blank" class="insta-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+        @_rox.an_ronin_
+      </a>
+    </div>
+    <div class="cat-nav">
+      <div class="cat-pill active" onclick="filterCat('all', this)">✦ All</div>
+      <div class="cat-pill" onclick="filterCat('cat1', this)">🎬 Movies & TV</div>
+      <div class="cat-pill" onclick="filterCat('cat1dl', this)">⬇️ Movies Download</div>
+      <div class="cat-pill" onclick="filterCat('cat2', this)">🌸 Anime</div>
+      <div class="cat-pill" onclick="filterCat('cat3', this)">🎮 Games</div>
+      <div class="cat-pill" onclick="filterCat('cat4', this)">🎵 Music</div>
+      <div class="cat-pill" onclick="filterCat('cat5', this)">🔧 Download Tools</div>
+    </div>
+  </header>
+
+
+  <!-- SECTION 1 — Movies Watch -->
+  <section class="section visible" data-cat="cat1">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(220,60,60,0.12);border-color:rgba(220,60,60,0.25);">🎬</div>
+      <div>
+        <div class="section-title">Movies & TV Shows</div>
+        <div class="section-desc">Stream the best content for free</div>
+      </div>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid">
+      <a href="https://multimovies.fyi/" target="_blank" class="site-card featured">
+        <div class="card-logo"><img src="multimovies.jpg" alt="logo"></div>
+        <div>
+          <div class="card-name">MultiMovies</div>
+          <div class="card-desc">Best for watching in regional languages. Use Brave or AdBlock for clean experience.</div>
+          <div class="card-tag">⭐ Top Pick</div>
+        </div>
+      </a>
+      <a href="https://vegamixx.com/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="logo.png" alt="logo"></div>
+        <div class="card-name">Vegamixx</div>
+        <div class="card-desc">Watch movies and shows for free in regional languages</div>
+        <div class="card-tag">Free</div>
+      </a>
+      <a href="https://www.streamxtv.net/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="reallogo.svg" alt="logo"></div>
+        <div class="card-name">Streamx</div>
+        <div class="card-desc">Watch any movies and shows in English with subtitles</div>
+        <div class="card-tag">English</div>
+      </a>
+      <a href="https://67movies.net/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="Movie-Hollywood-PNG.png" alt="logo"></div>
+        <div class="card-name">67 movies</div>
+        <div class="card-desc">Watch movies and shows in any one language</div>
+        <div class="card-tag">one language</div>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- SECTION 1b — Movies Download -->
+  <section class="section visible" data-cat="cat1dl">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(220,60,60,0.12);border-color:rgba(220,60,60,0.25);">⬇️</div>
+      <div>
+        <div class="section-title">Movies & TV Shows — Download</div>
+        <div class="section-desc">Download the best movies and shows for free</div>
+      </div>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid">
+      <a href="https://new1.hdhub4u.limo/?utm=mn1" target="_blank" class="site-card featured">
+        <div class="card-logo"><img src="hdhub4ulogo.png" alt="logo"></div>
+        <div>
+          <div class="card-name">Hdhub4u</div>
+          <div class="card-desc">Download any movies and shows in any language</div>
+          <div class="card-tag">⭐ Top Pick</div>
+        </div>
+      </a>
+      <a href="https://moviesleech.link/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="topmovies-logo.png" alt="logo"></div>
+        <div class="card-name">moviesleech</div>
+        <div class="card-desc">Download any Bollywood movies</div>
+        <div class="card-tag">Bollywood</div>
+      </a>
+      <a href="https://moviesmod.farm/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="moviesmodnew-Custom.png" alt="logo"></div>
+        <div class="card-name">Moviesmod</div>
+        <div class="card-desc">Download any Hollywood movies and shows</div>
+        <div class="card-tag">hollywood</div>
+      </a>
+      <a href="https://movies4u.ee/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="mobile-logo-uhdmovies.png" alt="logo"></div>
+        <div class="card-name">UHD Movies</div>
+        <div class="card-desc">Download any movies in 4K or full HD quality</div>
+        <div class="card-tag">HD, 4K</div>
+      </a>
+      <a href="https://uhdmovies.pink/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="file.png" alt="logo"></div>
+        <div class="card-name">UHD Movies</div>
+        <div class="card-desc">Same as above — backup if other doesn't work</div>
+        <div class="card-tag">backup</div>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- SECTION 2 — Anime -->
+  <section class="section visible" data-cat="cat2">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(255,150,200,0.12);border-color:rgba(255,150,200,0.25);">🌸</div>
+      <div>
+        <div class="section-title">Anime [Streaming]</div>
+        <div class="section-desc">Watch anime online, sub and dub</div>
+      </div>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid">
+      <a href="https://animesalt.ac/" target="_blank" class="site-card featured">
+        <div class="card-logo"><img src="AnimeSaltLong.png" alt="logo"></div>
+        <div>
+          <div class="card-name">Animesalt</div>
+          <div class="card-desc">Watch animes in several languages</div>
+          <div class="card-tag">⭐ Top Pick</div>
+        </div>
+      </a>
+      <a href="https://toonstream.vip/home/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="TOONSTREAM.png" alt="logo"></div>
+        <div class="card-name">Toonstream</div>
+        <div class="card-desc">Watch animes and cartoons in regional languages</div>
+        <div class="card-tag">Animated shows</div>
+      </a>
+      <a href="https://www.rareanimes.buzz/home/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="Rare-Animes-India.png" alt="logo"></div>
+        <div class="card-name">Rare-Animes-India</div>
+        <div class="card-desc">Both watch and download animes or cartoons</div>
+        <div class="card-tag">Download and watch</div>
+      </a>
+      <a href="https://reanime.to/home" target="_blank" class="site-card">
+        <div class="card-logo"><img src="reanime.png" alt="logo"></div>
+        <div class="card-name">Re-anime</div>
+        <div class="card-desc">Watch any Animes in English or Japanese DUB or SUB</div>
+        <div class="card-tag">ENGLISH-Sub+Dub</div>
+      </a>
+      <a href="https://9anime.org.lv/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="9animes.png" alt="logo"></div>
+        <div class="card-name">9-animes</div>
+        <div class="card-desc">Watch animes in english sub</div>
+        <div class="card-tag">ENGLISH-Sub+Dub</div>
+      </a>
+      <a href="https://animetsu.net/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="animest.png" alt="logo"></div>
+        <div class="card-name">animetsu</div>
+        <div class="card-desc">Backup — watch animes in english or japanese</div>
+        <div class="card-tag">ENGLISH-Sub+Dub</div>
+      </a>
+    </div>
+
+    <div class="section-header" style="margin-top:40px;">
+      <div class="section-icon" style="background:rgba(255,150,200,0.12);border-color:rgba(255,150,200,0.25);">🌸</div>
+      <div>
+        <div class="section-title">Anime [Download]</div>
+        <div class="section-desc">Download anime, sub and dub</div>
+      </div>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid">
+      <a href="https://toonworld4all.me/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="Toonworld4all-logo.png" alt="logo"></div>
+        <div class="card-name">Toonworld4all</div>
+        <div class="card-desc">Download anime in any languages</div>
+        <div class="card-tag">Download animes</div>
+      </a>
+      <a href="https://deadtoons.org/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="dead.png" alt="logo"></div>
+        <div class="card-name">Deadtoonsindia</div>
+        <div class="card-desc">Download animes in several languages</div>
+        <div class="card-tag">Download</div>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- SECTION 3 — Games -->
+  <section class="section visible" data-cat="cat3">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(60,180,80,0.12);border-color:rgba(60,180,80,0.25);">🎮</div>
+      <div>
+        <div class="section-title">PC Games — Download</div>
+        <div class="section-desc">Download PC games for free</div>
+      </div>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid">
+      <a href="https://fitgirl-repacks.site/popular-repacks/" target="_blank" class="site-card featured">
+        <div class="card-logo"><img src="fitgirl.png" alt="logo"></div>
+        <div>
+          <div class="card-name">Fitgirl</div>
+          <div class="card-desc">Great site, virus free and easy to download PC games</div>
+          <div class="card-tag">⭐ Top Pick</div>
+        </div>
+      </a>
+      <a href="https://ankergames.net/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="dark-logo-1770061259.svg" alt="logo"></div>
+        <div class="card-name">ankergames</div>
+        <div class="card-desc">Good website with clean interface, very easy to download</div>
+        <div class="card-tag">Good interface</div>
+      </a>
+      <a href="https://creativeconor.com/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="conor.png" alt="logo"></div>
+        <div class="card-name">creativeconor</div>
+        <div class="card-desc">Good interface and also has some other software</div>
+        <div class="card-tag">games and software</div>
+      </a>
+      <a href="https://filecr.com/home/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="filecr.png" alt="logo"></div>
+        <div class="card-name">filecr</div>
+        <div class="card-desc">Mainly for downloading software, also has some games</div>
+        <div class="card-tag">download software apps</div>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- SECTION 5 — Download Tools -->
+  <section class="section visible" data-cat="cat5">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(200,120,50,0.12);border-color:rgba(200,120,50,0.25);">🔧</div>
+      <div>
+        <div class="section-title">Download Tools</div>
+        <div class="section-desc">Online tools you will use every day</div>
+      </div>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid">
+      <a href="https://yt2mp3.sc/" target="_blank" class="site-card featured">
+        <div class="card-logo"><img src="logo.svg" alt="logo"></div>
+        <div>
+          <div class="card-name">YTmp3</div>
+          <div class="card-desc">Download any YouTube songs in good quality — just paste the video link</div>
+          <div class="card-tag">⭐ Top Pick</div>
+        </div>
+      </a>
+      <a href="https://azmp3.cc/pro1/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="logo_test.png" alt="logo"></div>
+        <div class="card-name">azmp3</div>
+        <div class="card-desc">Also download songs — copy link of video and paste here</div>
+        <div class="card-tag">YT songs</div>
+      </a>
+      <a href="https://spotimate.io/" target="_blank" class="site-card">
+        <div class="card-logo"><img src="sp.png" alt="logo"></div>
+        <div class="card-name">Spotimate</div>
+        <div class="card-desc">Download any Spotify songs</div>
+        <div class="card-tag">Spotify songs</div>
+      </a>
+      <a href="https://vidssave.com/youtube-video-downloader-3cx" target="_blank" class="site-card">
+        <div class="card-logo"><img src="yt video.png" alt="logo"></div>
+        <div class="card-name">videosave</div>
+        <div class="card-desc">Download any YT video — just copy paste the link</div>
+        <div class="card-tag">download YT videos</div>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ PORTFOLIO SECTION ═══════════ -->
+  <!-- ⚠️ Replace YOUR_PORTFOLIO_LINK_HERE with your actual portfolio URL -->
+  <section class="portfolio-section">
+    <div class="pf-bg-glow"></div>
+    <div class="pf-inner">
+
+      <!-- 3D Cube -->
+      <div class="cube-scene">
+        <div class="cube">
+          <div class="cube-face cube-front">💼</div>
+          <div class="cube-face cube-back">✦</div>
+          <div class="cube-face cube-right">🔗</div>
+          <div class="cube-face cube-left">👨‍💻</div>
+          <div class="cube-face cube-top">🚀</div>
+          <div class="cube-face cube-bottom">⚡</div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="pf-text">
+        <div class="pf-eyebrow">✦ Extra Content</div>
+        <h2 class="pf-heading">Check Out My Portfolio</h2>
+        <p class="pf-sub">See my projects, skills &amp; web work — by Roxan</p>
+      </div>
+
+      <!-- Button -->
+      <a href="potfolio.html" target="_blank" class="pf-btn">
+        <span>Visit Portfolio</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 17L17 7M7 7h10v10"/>
+        </svg>
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- No results message -->
+  <div class="no-results" id="noResults">
+    No sites found for "<span id="noTerm"></span>" — try a different search.
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Made with ❤️ · <span>Roxan</span> · &copy; All rights reserved
+  </footer>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>

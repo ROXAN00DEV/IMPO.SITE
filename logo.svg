@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="106" height="24" viewBox="0 0 106 24" role="img" aria-label="YTMP3 logo">
+  <g transform="translate(0, 0)" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/>
+    <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/>
+  </g>
+  <text x="30" y="17" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="600" fill="#f5f6f8" letter-spacing="0.5">YTMP3</text>
+</svg>

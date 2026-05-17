@@ -1,0 +1,732 @@
+/* ═══════════ CYBERPUNK OVERDRIVE ═══════════ */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Exo 2', monospace;
+  background: #000;
+  color: #00ff88;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120,119,198,0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120,219,255,0.3) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+  animation: matrixRain 20s linear infinite;
+}
+
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -2;
+  opacity: 0.1;
+}
+
+.wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ═══════════ NEON SCANLINES ═══════════ */
+.scanlines::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255,0,0,0.03) 50%, transparent 50%),
+    linear-gradient(90deg, transparent 79%, rgba(255,0,255,0.025) 80%, rgba(255,0,255,0.025) 90%, transparent 91%);
+  background-size: 100% 2px, 8px 100%;
+  pointer-events: none;
+  z-index: 9999;
+  animation: scanline 3s linear infinite;
+}
+
+/* ═══════════ HEADER HACKER TERMINAL ═══════════ */
+header {
+  text-align: center;
+  margin-bottom: 60px;
+  padding: 40px 0;
+  position: relative;
+}
+
+.logo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(45deg, #ff0080, #00ff88, #0080ff, #ff8000);
+  background-size: 400% 400%;
+  animation: glitch 2s ease-in-out infinite alternate;
+  border: 2px solid #00ff88;
+  box-shadow: 
+    0 0 20px #00ff88,
+    inset 0 0 20px rgba(0,255,136,0.2);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.logo-badge::before {
+  content: 'HACKED';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff0040;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 10px;
+  border-radius: 4px;
+  animation: blink 1s infinite;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: #ff0080;
+  border-radius: 50%;
+  animation: pulseNeon 1.5s ease-in-out infinite alternate;
+  box-shadow: 0 0 15px #ff0080;
+}
+
+h1 {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 900;
+  background: linear-gradient(45deg, #00ff88, #0080ff, #ff0080, #ffff00, #00ff88);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 
+    0 0 30px #00ff88,
+    0 0 60px #0080ff;
+  margin-bottom: 16px;
+  letter-spacing: -3px;
+  animation: titleGlitch 4s ease-in-out infinite;
+  position: relative;
+}
+
+h1::after {
+  content: '_';
+  animation: blink 1s infinite;
+  margin-left: 4px;
+}
+
+.tagline {
+  font-family: 'Exo 2', monospace;
+  font-size: 20px;
+  background: linear-gradient(90deg, #00ff88, #0080ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  margin-bottom: 48px;
+  text-shadow: 0 0 20px currentColor;
+}
+
+/* ═══════════ HOLO SEARCH ═══════════ */
+.search-wrap {
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto 48px;
+  background: rgba(0,255,136,0.1);
+  border: 2px solid #00ff88;
+  border-radius: 16px;
+  padding: 4px;
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 0 40px rgba(0,255,136,0.4),
+    inset 0 0 40px rgba(0,255,136,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.search-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0,255,136,0.3), transparent);
+  animation: shimmer 3s infinite;
+}
+
+#searchInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 20px 32px;
+  font-family: 'Orbitron', monospace;
+  font-size: 18px;
+  color: #00ff88;
+  font-weight: 600;
+  text-shadow: 0 0 10px currentColor;
+}
+
+#searchInput::placeholder {
+  color: rgba(0,255,136,0.6);
+  text-shadow: none;
+}
+
+.search-btn {
+  background: linear-gradient(45deg, #ff0080, #00ff88);
+  border: 2px solid #00ff88;
+  padding: 20px 36px;
+  border-radius: 12px;
+  color: #000;
+  font-family: 'Orbitron', monospace;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0,255,136,0.5);
+}
+
+.search-btn:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 0 60px rgba(0,255,136,0.8);
+  background: linear-gradient(45deg, #00ff88, #ff0080);
+}
+
+.search-btn:active {
+  transform: scale(0.98);
+}
+
+/* ═══════════ INSTAGRAM NEON PORTAL ═══════════ */
+.insta-wrap {
+  margin: 48px 0;
+}
+
+.insta-label {
+  margin-bottom: 16px;
+  color: #00ff88;
+  font-family: 'Exo 2', monospace;
+  font-size: 16px;
+  text-shadow: 0 0 10px currentColor;
+}
+
+.insta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #ff0080, #ff6600);
+  border: 2px solid #ff0080;
+  padding: 18px 32px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.4s ease;
+  box-shadow: 
+    0 0 40px rgba(255,0,128,0.6),
+    inset 0 0 20px rgba(255,255,255,0.2);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.insta-badge svg {
+  filter: drop-shadow(0 0 10px #ff0080);
+}
+
+.insta-badge::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.6s ease;
+}
+
+.insta-badge:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.insta-badge:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 0 80px rgba(255,0,128,0.9);
+}
+
+/* ═══════════ CYBERPUNK CATEGORIES ═══════════ */
+.cat-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 48px;
+  padding: 24px 0;
+}
+
+.cat-pill {
+  padding: 16px 28px;
+  background: rgba(0,255,136,0.15);
+  border: 2px solid #00ff88;
+  border-radius: 25px;
+  color: #00ff88;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 20px rgba(0,255,136,0.3);
+}
+
+.cat-pill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.cat-pill:hover::before {
+  left: 100%;
+}
+
+.cat-pill:hover {
+  transform: translateY(-6px) scale(1.1);
+  box-shadow: 0 20px 40px rgba(0,255,136,0.4);
+  background: rgba(0,255,136,0.3);
+}
+
+.cat-pill.active {
+  background: linear-gradient(45deg, #00ff88, #0080ff);
+  border-color: #0080ff;
+  color: #000;
+  box-shadow: 
+    0 0 40px #00ff88,
+    0 10px 30px rgba(0,255,136,0.4);
+  animation: activePulse 2s infinite;
+}
+
+/* ═══════════ SECTIONS ═══════════ */
+.section {
+  display: none;
+  margin-bottom: 100px;
+  animation: cyberFadeIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.section.visible {
+  display: block;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  position: relative;
+}
+
+.section-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #00ff88, #0080ff, #ff0080, #00ff88);
+  background-size: 300% 100%;
+  animation: gradientShift 2s ease infinite;
+}
+
+.section-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  border: 3px solid;
+  background: rgba(0,255,136,0.2);
+  box-shadow: 
+    0 0 30px rgba(0,255,136,0.5),
+    inset 0 0 20px rgba(0,255,136,0.1);
+  backdrop-filter: blur(20px);
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+.section-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 3.5rem;
+  font-weight: 900;
+  background: linear-gradient(45deg, #00ff88, #0080ff, #ffff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px currentColor;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+.section-desc {
+  color: rgba(0,255,136,0.8);
+  font-size: 20px;
+  font-weight: 400;
+  text-shadow: 0 0 15px currentColor;
+}
+
+/* ═══════════ HACKER CARDS ═══════════ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 32px;
+}
+
+.site-card {
+  display: block;
+  text-decoration: none;
+  background: rgba(0,0,0,0.8);
+  border: 2px solid #00ff88;
+  border-radius: 24px;
+  padding: 36px;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 0 40px rgba(0,255,136,0.3),
+    inset 0 0 20px rgba(0,255,136,0.1);
+}
+
+.site-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff0080, #00ff88, #0080ff, #ffff00, #ff0080);
+  background-size: 400% 100%;
+  animation: gradientShift 2s ease infinite;
+}
+
+.site-card.featured {
+  border-color: #ffff00;
+  box-shadow: 
+    0 0 60px rgba(255,255,0,0.6),
+    inset 0 0 30px rgba(255,255,0,0.2);
+}
+
+.site-card.featured::before {
+  height: 6px;
+  background: linear-gradient(90deg, #ffff00, #ff6600, #ffff00);
+}
+
+.site-card::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(45deg, #00ff88, #0080ff);
+  border-radius: 4px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.site-card:hover::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1.2);
+}
+
+.site-card:hover {
+  transform: translateY(-20px) rotateX(10deg) rotateY(10deg);
+  border-color: #ffff00;
+  box-shadow: 
+    0 40px 80px rgba(0,255,136,0.5),
+    0 0 100px rgba(0,255,136,0.3);
+  background: rgba(0,255,136,0.15);
+}
+
+.card-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  border: 3px solid #00ff88;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, rgba(0,255,136,0.3), rgba(0,128,255,0.3));
+  box-shadow: 0 0 30px rgba(0,255,136,0.5);
+  transition: all 0.4s ease;
+}
+
+.site-card:hover .card-logo {
+  transform: rotate(360deg) scale(1.1);
+  box-shadow: 0 0 50px rgba(0,255,136,0.8);
+}
+
+.card-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 15px #00ff88);
+}
+
+.card-name {
+  font-family: 'Orbitron', monospace;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #00ff88;
+  margin-bottom: 12px;
+  text-shadow: 0 0 20px currentColor;
+  letter-spacing: 1px;
+}
+
+.card-desc {
+  color: rgba(255,255,255,0.9);
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(0,255,136,0.5);
+}
+
+.card-tag {
+  display: inline-block;
+  background: linear-gradient(45deg, #ff0080, #00ff88);
+  padding: 10px 24px;
+  border-radius: 25px;
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 20px rgba(255,0,128,0.5);
+  animation: tagPulse 2s infinite;
+}
+
+/* ═══════════ NO RESULTS TERMINAL ═══════════ */
+.no-results {
+  text-align: center;
+  padding: 100px 20px;
+  color: #ff4444;
+  font-family: 'Orbitron', monospace;
+  font-size: 24px;
+  display: none;
+  text-shadow: 0 0 20px currentColor;
+  background: rgba(255,68,68,0.1);
+  border: 2px solid #ff4444;
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(255,68,68,0.4);
+}
+
+#noTerm {
+  color: #ffff00;
+  text-shadow: 0 0 30px #ffff00;
+  animation: glitchText 0.3s infinite;
+}
+
+/* ═══════════ FOOTER ═══════════ */
+footer {
+  text-align: center;
+  padding: 48px 0;
+  color: #00ff88;
+  font-family: 'Orbitron', monospace;
+  font-size: 16px;
+  border-top: 2px solid #00ff88;
+  margin-top: 100px;
+  text-shadow: 0 0 15px currentColor;
+  box-shadow: 0 -10px 30px rgba(0,255,136,0.2);
+}
+
+footer span {
+  color: #ff0080;
+  font-weight: 900;
+  text-shadow: 0 0 25px currentColor;
+}
+
+/* ═══════════ INSANE ANIMATIONS ═══════════ */
+@keyframes matrixRain {
+  0% { transform: translateY(0%) skewX(0deg); }
+  100% { transform: translateY(-100%) skewX(5deg); }
+}
+
+@keyframes scanline {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes pulseNeon {
+  0% { box-shadow: 0 0 15px #ff0080, 0 0 30px #ff0080; }
+  100% { box-shadow: 0 0 25px #ff0080, 0 0 50px #ff0080, 0 0 75px #ff0080; }
+}
+
+@keyframes titleGlitch {
+  0%, 95% { transform: scale(1); }
+  97% { transform: scale(1.02) skewX(2deg); }
+  99% { transform: scale(0.98) skewX(-1deg); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes cyberFadeIn {
+  0% { 
+    opacity: 0; 
+    transform: translateY(50px) scale(0.8) rotateX(-20deg); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1) rotateX(0); 
+  }
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes activePulse {
+  0%, 100% { box-shadow: 0 0 40px #00ff88, 0 10px 30px rgba(0,255,136,0.4); }
+  50% { box-shadow: 0 0 60px #00ff88, 0 20px 50px rgba(0,255,136,0.6); }
+}
+
+@keyframes tagPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes glitchText {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(2px, 2px); }
+}
+
+/* ═══════════ RESPONSIVE TERMINAL ═══════════ */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .cat-nav {
+    gap: 12px;
+  }
+  
+  .cat-pill {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-wrap {
+    flex-direction: column;
+  }
+  
+  .site-card {
+    padding: 28px 24px;
+  }
+}
+
+/* ═══════════ CUSTOM SCROLLBAR ═══════════ */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.8);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #00ff88, #0080ff);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,255,136,0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #ff0080, #00ff88);
+  box-shadow: 0 0 30px rgba(255,0,128,0.8);
+}

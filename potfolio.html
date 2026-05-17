@@ -1,0 +1,714 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YOUR NAME — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+
+    /* ══ ROOT ══ */
+    :root {
+      --pink:    #ff2d78;
+      --purple:  #7b2fff;
+      --cyan:    #00e5ff;
+      --bg:      #0d0a1a;
+      --bg2:     #120e22;
+      --card:    #1a1430;
+      --border:  rgba(123,47,255,0.35);
+      --text:    #e8deff;
+      --muted:   #7a6fa0;
+      --font-h:  'Rajdhani', sans-serif;
+      --font-m:  'Space Mono', monospace;
+      --font-b:  'Noto Sans JP', sans-serif;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-b);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content:'';
+      position:fixed; inset:0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events:none; z-index:0; opacity:0.4;
+    }
+
+    /* Grid background */
+    body::after {
+      content:'';
+      position:fixed; inset:0;
+      background-image:
+        linear-gradient(rgba(123,47,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(123,47,255,0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events:none; z-index:0;
+    }
+
+    .page { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:24px 20px 80px; }
+
+    /* ══ HEADER ══ */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 18px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .header-left { display:flex; flex-direction:column; gap:4px; }
+
+    .name {
+      font-family: var(--font-h);
+      font-size: clamp(32px, 7vw, 58px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.06em;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 0 0 30px rgba(123,47,255,0.6);
+      border: 2px solid rgba(255,255,255,0.15);
+      padding: 4px 12px;
+      display: inline-block;
+    }
+
+    .role {
+      font-family: var(--font-m);
+      font-size: 12px;
+      color: var(--cyan);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding-left: 4px;
+      margin-top: 6px;
+    }
+
+    .header-right {
+      text-align: right;
+      font-family: var(--font-m);
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .header-right a { color: var(--text); text-decoration:none; }
+    .header-right a:hover { color: var(--cyan); }
+
+    /* ══ TOP ROW ══ */
+    .top-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      margin-bottom: 20px;
+      align-items: start;
+    }
+
+    /* ══ CARDS ══ */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content:'';
+      position:absolute;
+      top:0; left:0; right:0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--pink));
+    }
+
+    /* ══ SECTION LABEL ══ */
+    .sec-label {
+      display: inline-block;
+      font-family: var(--font-m);
+      font-size: 11px;
+      color: #fff;
+      background: transparent;
+      border: 1.5px solid var(--pink);
+      padding: 3px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    /* ══ ABOUT ME ══ */
+    .about-card p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 300;
+    }
+
+    /* ══ SOCIAL MEDIA ══ */
+    .social-section { margin-top: 18px; }
+
+    .social-section .sec-label { border-color: var(--pink); }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .soc-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.05);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      text-decoration: none;
+      color: var(--text);
+      font-family: var(--font-m);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+
+    .soc-btn:hover {
+      border-color: var(--pink);
+      color: var(--pink);
+      background: rgba(255,45,120,0.08);
+      transform: translateY(-2px);
+    }
+
+    .soc-btn svg { width:16px; height:16px; }
+
+    /* ══ PROFILE IMAGE ══ */
+    .profile-img-wrap {
+      width: 180px;
+      flex-shrink: 0;
+    }
+
+    .profile-img-box {
+      width: 180px;
+      height: 220px;
+      border-radius: 6px;
+      border: 2px solid var(--pink);
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 30px rgba(255,45,120,0.25), 4px 4px 0 var(--purple);
+      background: rgba(255,45,120,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-img-box img {
+      width:100%; height:100%; object-fit:cover;
+    }
+
+    .profile-img-placeholder {
+      font-family: var(--font-m);
+      font-size: 10px;
+      color: var(--pink);
+      text-align: center;
+      padding: 16px;
+      line-height: 1.8;
+      letter-spacing: 0.05em;
+    }
+
+    /* ══ MIDDLE ROW ══ */
+    .mid-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* ══ LIST ITEMS ══ */
+    .star-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .star-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      line-height: 1.4;
+      color: var(--text);
+    }
+
+    .star-list li::before {
+      content: '✦';
+      color: var(--pink);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ══ PROJECTS SECTION ══ */
+    .projects-row {
+      margin-bottom: 20px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::after {
+      content:'';
+      position:absolute;
+      bottom:0; left:0; right:0;
+      height:2px;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      transform: scaleX(0);
+      transition: transform 0.25s;
+      transform-origin: left;
+    }
+
+    .project-card:hover { border-color: var(--purple); transform:translateY(-3px); background: rgba(123,47,255,0.07); }
+    .project-card:hover::after { transform: scaleX(1); }
+
+    .project-tag {
+      display: inline-block;
+      font-family: var(--font-m);
+      font-size: 9px;
+      color: var(--cyan);
+      border: 1px solid rgba(0,229,255,0.3);
+      padding: 2px 8px;
+      border-radius: 3px;
+      width: fit-content;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .project-name {
+      font-family: var(--font-h);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .project-link {
+      font-family: var(--font-m);
+      font-size: 10px;
+      color: var(--pink);
+      margin-top: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ══ CONTACT SECTION ══ */
+    .contact-row { margin-bottom: 20px; }
+
+    .contact-inner {
+      background: linear-gradient(135deg, rgba(123,47,255,0.12), rgba(255,45,120,0.08));
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 24px;
+      text-align: center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .contact-inner::before {
+      content:'';
+      position:absolute; inset:0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(123,47,255,0.2), transparent 70%);
+      pointer-events:none;
+    }
+
+    .contact-inner h2 {
+      font-family: var(--font-h);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .contact-inner p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+
+    .contact-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 24px;
+      border-radius: 5px;
+      font-family: var(--font-m);
+      font-size: 11px;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+
+    .contact-btn.primary {
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 20px rgba(255,45,120,0.3);
+    }
+
+    .contact-btn.primary:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(255,45,120,0.45); }
+
+    .contact-btn.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+
+    .contact-btn.secondary:hover { border-color: var(--cyan); color: var(--cyan); transform:translateY(-2px); }
+
+    /* ══ BOTTOM ROW ══ */
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    /* ══ HOBBIES ══ */
+    .hobby-icons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .hobby-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,45,120,0.1);
+      border: 1px solid rgba(255,45,120,0.25);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .hobby-chip span { font-size: 20px; }
+
+    /* ══ TOOLS ══ */
+    .tools-grid {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .tool-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-family: var(--font-m);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border: 1.5px solid;
+    }
+
+    .tool-badge.ps  { color:#31a8ff; border-color:rgba(49,168,255,0.35); background:rgba(49,168,255,0.08); }
+    .tool-badge.ai  { color:#ff9a00; border-color:rgba(255,154,0,0.35);   background:rgba(255,154,0,0.08); }
+    .tool-badge.xd  { color:#ff61f6; border-color:rgba(255,97,246,0.35);  background:rgba(255,97,246,0.08); }
+    .tool-badge.fig { color:#a259ff; border-color:rgba(162,89,255,0.35);  background:rgba(162,89,255,0.08); }
+    .tool-badge.html{ color:#e44d26; border-color:rgba(228,77,38,0.35);   background:rgba(228,77,38,0.08); }
+    .tool-badge.css { color:#264de4; border-color:rgba(38,77,228,0.35);   background:rgba(38,77,228,0.08); }
+
+    /* ══ FOOTER ══ */
+    footer {
+      text-align:center;
+      padding: 40px 0 10px;
+      font-family: var(--font-m);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    footer span { color: var(--pink); }
+
+    /* ══ ANIMATIONS ══ */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .page > * {
+      animation: fadeUp 0.5s ease both;
+    }
+    .header      { animation-delay: 0.05s; }
+    .top-row     { animation-delay: 0.12s; }
+    .mid-row     { animation-delay: 0.20s; }
+    .projects-row{ animation-delay: 0.28s; }
+    .contact-row { animation-delay: 0.36s; }
+    .bottom-row  { animation-delay: 0.44s; }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 640px) {
+      .top-row         { grid-template-columns: 1fr; }
+      .profile-img-wrap{ width:100%; }
+      .profile-img-box { width:100%; height:200px; }
+      .mid-row         { grid-template-columns: 1fr; }
+      .bottom-row      { grid-template-columns: 1fr; }
+      .header          { flex-direction:column; }
+      .header-right    { text-align:left; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header class="header">
+    <div class="header-left">
+      <div class="name">ROXAN</div>
+      <!--          ↑ replace with your real name -->
+      <div class="role">Game &amp; vibecoader · Web Developer</div>
+      <!--              ↑ replace with your real role -->
+    </div>
+    <div class="header-right">
+      Contact: <strong>Telegram - instagram - Discord </strong><br>
+      Email: <a href="mailto:rk1742009@gmail.com">rk1742009@gmail.com</a><br>
+      Location: Jai vihar - new delhi, INDIA
+    </div>
+  </header>
+
+
+  <!-- ══════════ TOP ROW: About + Image ══════════ -->
+  <div class="top-row">
+
+    <div>
+      <!-- About Me -->
+      <div class="card about-card">
+        <div class="sec-label">About Me</div>
+        <p>
+        <div>HELLO,</div>
+          I am Roshan...i am learning web developing and make some useful web sites...I made web site with the help of AI like [chat gpt,claude,ect]..i also learning game Development [very very beggner]
+          i am in 11th class and i thought i am vey late and i have to learn everything for get job after 12th but now i made sites for fun or for Use and also learning stage.
+        </p>
+
+        <!-- Social Media -->
+        <div class="social-section">
+          <div class="sec-label">Social Media</div>
+          <div class="social-icons">
+
+            <!-- INSTAGRAM -->
+            <a href="https://instagram.com/_rox.an_ronin_" target="_blank" class="soc-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+
+            <!-- BEHANCE -->
+            <a href="https://behance.net/PASTE YOUR BEHANCE ID" target="_blank" class="soc-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 11.5c.83 0 1.5-.67 1.5-1.5S8.33 8.5 7.5 8.5H5v3h2.5zm.25 2H5v3.5h2.75c.97 0 1.75-.78 1.75-1.75S8.72 13.5 7.75 13.5zM15 10c-1.1 0-1.95.72-2.18 1.67H17.2c-.22-.96-1.1-1.67-2.2-1.67zM22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10zm-5 .5h-5.17c.16 1.03 1.02 1.83 2.17 1.83.73 0 1.37-.36 1.74-.9l1.35.78C16.35 15.14 15.25 16 14 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 3.92 1.75 3.92 4l-.08.5zm-7.62 2H4V8h5.04C10.7 8 12 9.12 12 10.5c0 .88-.48 1.66-1.2 2.1.97.42 1.7 1.38 1.7 2.4 0 1.66-1.3 3-3.12 3z"/></svg>
+              Discord
+            </a>
+
+            <!-- PINTEREST -->
+            <a href="https://pinterest.com/PASTE YOUR PINTEREST ID" target="_blank" class="soc-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.853 0 1.267.641 1.267 1.408 0 .858-.546 2.141-.828 3.329-.236.995.499 1.806 1.476 1.806 1.772 0 3.137-1.868 3.137-4.564 0-2.387-1.715-4.057-4.163-4.057-2.836 0-4.498 2.127-4.498 4.326 0 .856.33 1.773.741 2.273a.3.3 0 0 1 .069.288l-.276 1.127c-.044.183-.147.222-.339.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.967-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+              Pinterest
+            </a>
+
+            <!-- ADD MORE SOCIAL: copy any soc-btn above, change href and label -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Image -->
+    <div class="profile-img-wrap">
+      <div class="profile-img-box">
+        <img src="vinland.png  " alt="Profile Photo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <div class="profile-img-placeholder" style="display:none;">
+          📷<br>PASTE YOUR<br>PHOTO HERE<br><br>replace src=<br>"PASTE YOUR<br>PHOTO HERE"
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end top-row -->
+
+
+  <!-- ══════════ MID ROW: Education + Skills ══════════ -->
+  <div class="mid-row">
+
+    <!-- Education -->
+    <div class="card">
+      <div class="sec-label">Education</div>
+      <ul class="star-list">
+        <li>10th CLASS PASS</li>
+        <li>KNOW ENGLISH [Little]</li>
+        <li>11th CLASS [Ongoing]</li>
+        <li>Commerce student</li>
+        <!-- ➕ copy a <li> to add more -->
+      </ul>
+    </div>
+
+    <!-- Skills -->
+    <div class="card">
+      <div class="sec-label">Skills</div>
+      <ul class="star-list">
+        <li>HTML</li>
+        <li>CSS [little]</li>
+        <li>Know AI uses</li>
+        <li>UNITY</li>
+        <!-- ➕ copy a <li> to add more -->
+      </ul>
+    </div>
+
+  </div><!-- end mid-row -->
+
+
+  <!-- ══════════ PROJECTS / OLD SITES ══════════ -->
+  <div class="projects-row">
+    <div class="card">
+      <div class="sec-label">My Projects &amp; Sites</div>
+      <div class="projects-grid">
+
+        <!-- PROJECT CARD 1 -->
+        <a href="https://00roxan00.github.io/WOTCH/" target="_blank" class="project-card">
+          <div class="project-tag">movies</div>
+          <div class="project-name">WOTCH</div>
+          <div class="project-desc">Web site about watching online movies [my selected movies]</div>
+          <div class="project-link">→ watch movies</div>
+        </a>
+
+        <!-- PROJECT CARD 2 -->
+        <a href="https://roaring-mousse-64aa6f.netlify.app/" target="_blank" class="project-card">
+          <div class="project-tag">Cooking</div>
+          <div class="project-name">Cooked</div>
+          <div class="project-desc">Web site about cooking recipe</div>
+          <div class="project-link">→ View recipe</div>
+        </a>
+
+        <!-- PROJECT CARD 3 -->
+        <a href="https://sunny-froyo-f26f19.netlify.app/" target="_blank" class="project-card">
+          <div class="project-tag">Music</div>
+          <div class="project-name">MUZIC</div>
+          <div class="project-desc">Website about listen music [ some songs only ] </div>
+          <div class="project-link">→ Listen music</div>
+        </a>
+
+        <!-- ➕ Copy a project-card block above to add more projects -->
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ CONTACT / HIRE ME ══════════ -->
+  <div class="contact-row">
+    <div class="contact-inner">
+      <h2>Let's Work Together</h2>
+      <p>
+
+        Enjoy my web site and give me suggestions what next i build.<br>
+        : if you have any problem in using these sites and if you have a idea to give me whats build next  — DM me on any platform!
+      </p>
+      <div class="contact-btns">
+        <a href="mailto:rk1742009@gmail.com" class="contact-btn primary">
+          ✉ Email Me
+        </a>
+        <a href="https://ig.me/j/AbZnV525f9CpPs8a/" target="_blank" class="contact-btn secondary">
+          📸🔥 Join Our Instagram Group
+        </a>
+        <a href="tg.png" target="_blank" class="contact-btn secondary">
+          💬 Telegram
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ BOTTOM ROW: Hobbies + Tools ══════════ -->
+  <div class="bottom-row">
+
+    <!-- Hobbies -->
+    <div class="card">
+      <div class="sec-label">Hobbies</div>
+      <div class="hobby-icons">
+        <div class="hobby-chip"><span>🎬</span> Watching movies and series</div>
+        <div class="hobby-chip"><span>🎵</span> Listen songs</div>
+        <div class="hobby-chip"><span>📚</span> Reading books and mangas [sometime]</div>
+        <!-- ➕ copy a hobby-chip to add more -->
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <div class="card">
+      <div class="sec-label">Tools I Use</div>
+      <div class="tools-grid">
+        <div class="tool-badge ps"> VS code</div>
+        <div class="tool-badge ai">AI</div>
+        <div class="tool-badge xd">Youtube</div>
+        <div class="tool-badge fig">pintrest</div>
+        <div class="tool-badge html">HTML</div>
+        <div class="tool-badge css"> CSS</div>
+        <!-- ➕ copy a tool-badge, change class (ps/ai/xd/fig/html/css) and label -->
+      </div>
+    </div>
+
+  </div><!-- end bottom-row -->
+
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer>
+    © 2025 <span>Roxan</span> · All Rights Reserved · Made with ❤️
+  </footer>
+
+</div>
+</body>
+</html>
